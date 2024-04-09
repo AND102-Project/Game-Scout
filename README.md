@@ -68,7 +68,7 @@ This platform serves as a comprehensive price comparison and tracking tool for v
 
 
 **Flow Navigation** (Screen to Screen)
-![GameScout](https://hackmd.io/_uploads/ByepufflA.jpg)
+![GameScout](docs/Flowchart.jpeg)
 
 
 ## Wireframes
