@@ -5,7 +5,7 @@ Mobile App Dev - App Brainstorming
 1. Instagram
 2. Battlescribe
 3. StepUp
-4. Sidekick
+4. Sidekick by Sorted Food
 5. Pure Fitness
 6. Shelf
 7. GIF2Sticker
@@ -21,9 +21,31 @@ Mobile App Dev - App Brainstorming
    - **Story:** Allows users to share their lives in pictures and enhance their content with filters
    - **Market:** Anyone that takes pictures could enjoy this app. Ability to follow and hashtag based on interests and categories allows users with unique interests to engage with relevant content.
    - **Habit:** Users can post throughout the day many times. Features like "Stories" encourage more candid posting as well. Users can explore endless pictures in any category imaginable whenever they want. Very habbit forming!
-   - **Scope:** Instagram started out extremely narrow focused, just posting pics and viewing feeds. Has expanded to a somewhat larger scope including "Instagram Stories" (a la SnapChat) and messenger features. 
-### Rover
-   - **Category:**...
+   - **Scope:** Instagram started out extremely narrow focused, just posting pics and viewing feeds. Has expanded to a somewhat larger scope including "Instagram Stories" (a la SnapChat) and messenger features.
+
+### BattleScribe
+   - **Category:** Utilities / Gaming
+   - **Mobile:** Optimized for mobile devices, offers in-app purchases, designed for a seamless gaming experience.
+   - **Story:** Empowers tabletop wargamers to quickly create and manage army lists, with a community-driven database supporting multiple game systems.
+   - **Market:** Targeted at tabletop gamers, especially those playing systems like Warhammer 40k, Age of Sigmar, and other miniature wargames.
+   - **Habit:** Gamers frequently return to adjust their rosters and experiment with new list configurations, making it a tool they rely on regularly.
+   - **Scope:** Started as a simple list-building tool, BattleScribe has evolved to include features like printing, improved data management, and roster sharing.
+
+### StepUp
+   - **Category:** Health & Fitness / Social
+   - **Mobile:** Designed for smartphones, integrates with health data from wearables, promotes an active lifestyle.
+   - **Story:** Encourages users to be more active by tracking steps and creating friendly competitions. Offers a simple, elegant interface without subscriptions.
+   - **Market:** Aimed at individuals looking to increase daily activity, lose weight, and those who enjoy social challenges.
+   - **Habit:** Users are motivated to check the app regularly to track their progress, compete with friends, and maintain streaks.
+   - **Scope:** Began as a basic pedometer app, StepUp has expanded to include group challenges, social features, and integration with various wearables
+
+### Sidekick by Sorted Food
+   - **Category:** Food & Drink / Lifestyle
+   - **Mobile:** User-friendly interface, allows to quickly look for recipes. 
+   - **Story:** Designed to simplify meal planning and cooking, Sidekick offers curated recipe packs that minimize food waste and maximize flavor.
+   - **Market:** Ideal for busy individuals, food enthusiasts, and those seeking to improve their culinary skills with guided recipes.
+   - **Habit:** Users are drawn to plan their weekly meals, explore new recipes, and enjoy the process of cooking with less hassle.
+   - **Scope:** Initially focused on meal planning, Sidekick has expanded to include a comprehensive range of recipes, cooking tips, and community engagement features
 
 ## New App Ideas - List
 
@@ -99,7 +121,6 @@ Be sure to evaluate based on there being an API available (and free to use)
    - Scope: The first version (V1) focuses on the core functionality of capturing receipt images and parsing them for essential data. Version 2 (V2) introduces the spending summary feature and categorization of expenses. Version 3 (V3) could add budgeting tools and alerts for unusual spending. The next iteration (V4) might integrate with financial accounts for a comprehensive view of the user's financial picture.
    Api - MachineLearningKit, photo to text, https://developers.google.com/ml-kit/vision/text-recognition/v2/android
        - Local room databse for storage
-
 
 
 3. GPT Resume Review
