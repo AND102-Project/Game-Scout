@@ -73,7 +73,8 @@ This platform serves as a comprehensive price comparison and tracking tool for v
 
 ## Wireframes
 
-[Add picture of your hand sketched wireframes in this section] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+## Papaer Wireframe
+<img src="https://i.imgur.com/zRZIeEh.jpg" width=600>
 
 <br>
 
@@ -81,9 +82,12 @@ This platform serves as a comprehensive price comparison and tracking tool for v
 
 ### [BONUS] Digital Wireframes & Mockups
 
+<img src="https://i.imgur.com/i4qK57T.png" width=600>
+
 ### [BONUS] Interactive Prototype
-dfdfs
+<img src="https://i.imgur.com/RqIN4d6.gif" width=600>
 <br>
+
 
 # Milestone 2 - Build Sprint 1 (Unit 8)
 
