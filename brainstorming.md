@@ -4,6 +4,14 @@ Mobile App Dev - App Brainstorming
 ## Favorite Existing Apps - List
 1. Instagram
 2. Battlescribe
+3. StepUp
+4. Sidekick
+5. Pure Fitness
+6. Shelf
+7. GIF2Sticker
+8. Upside
+9. Ruler
+10. Shop
 
 
 ## Favorite Existing Apps - Categorize and Evaluate
