@@ -29,14 +29,14 @@ This platform serves as a comprehensive price comparison and tracking tool for v
 **Required Features**
 
 1. Display a list of games on sale from various platforms
-2. Save Favorates and Notify when deals are avalible
-3. Display Details about game and where it can be purchaed
+2. Save Favorites and Notify when deals are available
+3. Display Details about game and where it can be purchased
 
 **Optional Features**
 
 1. Login page with google authentication
 2. Search function to find specific games
-3. Suggestions based on favorated games (catagories)
+3. Suggestions based on favored games (categories)
 
 ### 2. Screen Archetypes
 
@@ -47,13 +47,13 @@ This platform serves as a comprehensive price comparison and tracking tool for v
   - Display games pulled from the api that are currently discounted
   - Can touch games to navigate to the detail page
   - Search bar (optional)
-  - Nav bar -> switch between favorates and this page
+  - Nav bar -> switch between favorites and this page
       - Game items - Name, platform - price- button to add to fav
 
-- Favorates Screen
-    - List of games favorated by the user
-    - Stored localy
-    - button to delete from favorates
+- Favorites Screen
+    - List of games favored by the user
+    - Stored locally
+    - button to delete from favorites
 
 - Detail Screen
     - List item details such as platform, best price, alternitve price, retail price, Link to buy
