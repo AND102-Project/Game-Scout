@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/nav_sale"
+        android:enabled="true"
+        android:icon="@drawable/baseline_attach_money_24"
+        android:title="On Sale"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:id="@+id/nav_favorites"
+        android:enabled="true"
+        android:icon="@drawable/baseline_favorite_24"
+        android:title="Favorites"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/nav_releases"
+        android:enabled="true"
+        android:icon="@drawable/baseline_new_releases_24"
+        android:title="New Releases"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/nav_topseller"
+        android:enabled="true"
+        android:icon="@drawable/baseline_auto_graph_24"
+        android:title="Top Sellers"
+        app:showAsAction="ifRoom"
+        />
+
+</menu>
