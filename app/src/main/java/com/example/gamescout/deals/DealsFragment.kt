@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.gamescout.R
 import com.example.gamescout.cheapsharkAPI.RetrofitClient
 import com.example.gamescout.databinding.FragmentDealsBinding
 import com.example.gamescout.item_data.GameItem
+import com.example.gamescout.item_data.StoreItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,6 +21,7 @@ class DealsFragment : Fragment() {
     private var _binding: FragmentDealsBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: DealAdapter
+    private var storeMap: Map<String, String> = emptyMap()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,10 +37,11 @@ class DealsFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        adapter = DealAdapter(emptyList())
+        adapter = DealAdapter(emptyList(), storeMap)
         binding.gamesRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.gamesRecyclerView.adapter = adapter
 
+        fetchStores()
         fetchDeals()
     }
 
@@ -56,6 +58,25 @@ class DealsFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<List<GameItem>>, t: Throwable) {
+                Timber.e("API Request Error: ${t.message}")
+            }
+        })
+    }
+
+    private fun fetchStores() {
+        RetrofitClient.instance.getStores().enqueue(object : Callback<List<StoreItem>> {
+            override fun onResponse(call: Call<List<StoreItem>>, response: Response<List<StoreItem>>) {
+                if (response.isSuccessful) {
+                    response.body()?.let { stores ->
+                        storeMap = stores.associate { it.storeID to it.storeName }
+                        adapter.updateStoreMap(storeMap)
+                    }
+                } else {
+                    Timber.e("API Request Failed: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<List<StoreItem>>, t: Throwable) {
                 Timber.e("API Request Error: ${t.message}")
             }
         })
