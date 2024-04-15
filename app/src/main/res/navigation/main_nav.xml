@@ -5,18 +5,20 @@
     android:id="@+id/main_nav"
     app:startDestination="@id/startFragment">
 
-    <fragment
-        android:id="@+id/dealsFragment"
-        android:name="com.example.gamescout.DealsFragment"
-        android:label="fragment_deals"
-        tools:layout="@layout/fragment_deals" />
+
     <fragment
         android:id="@+id/startFragment"
-        android:name="com.example.gamescout.StartFragment"
+        android:name="com.example.gamescout.login.StartFragment"
         android:label="fragment_start"
         tools:layout="@layout/fragment_start" >
         <action
             android:id="@+id/action_startFragment_to_dealsFragment"
             app:destination="@id/dealsFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/dealsFragment"
+        android:name="com.example.gamescout.deals.DealsFragment"
+        android:label="fragment_deals"
+        tools:layout="@layout/fragment_deals" />
 </navigation>

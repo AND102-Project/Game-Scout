@@ -1,4 +1,4 @@
-package com.example.gamescout
+package com.example.gamescout.item_data
 
 data class GameItem(
     val title: String,
