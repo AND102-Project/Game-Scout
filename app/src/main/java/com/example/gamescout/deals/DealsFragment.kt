@@ -7,18 +7,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gamescout.R
+import com.example.gamescout.cheapsharkAPI.RetrofitClient
 import com.example.gamescout.databinding.FragmentDealsBinding
 import com.example.gamescout.item_data.GameItem
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import timber.log.Timber
 
 
 class DealsFragment : Fragment() {
 
     private var _binding: FragmentDealsBinding? = null
     private val binding get() = _binding!!
+    private lateinit var adapter: DealAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDealsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -29,25 +36,34 @@ class DealsFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        val adapter = DealAdapter(getMockGames())
-        binding.gamesRecyclerView.apply {
-            layoutManager = LinearLayoutManager(context)
-            this.adapter = adapter
-        }
+        adapter = DealAdapter(emptyList())
+        binding.gamesRecyclerView.layoutManager = LinearLayoutManager(context)
+        binding.gamesRecyclerView.adapter = adapter
+
+        fetchDeals()
+    }
+
+    private fun fetchDeals() {
+        RetrofitClient.instance.getDeals().enqueue(object : Callback<List<GameItem>> {
+            override fun onResponse(call: Call<List<GameItem>>, response: Response<List<GameItem>>) {
+                if (response.isSuccessful) {
+                    response.body()?.let {
+                        adapter.updateData(it)
+                    }
+                } else {
+                    Timber.e("API Request Failed: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<List<GameItem>>, t: Throwable) {
+                Timber.e("API Request Error: ${t.message}")
+            }
+        })
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
-    fun getMockGames(): List<GameItem> {
-        return listOf(
-            GameItem("Game Title 1", "123", "http://example.com/thumb1.jpg"),
-            GameItem("Game Title 2", "124", "http://example.com/thumb2.jpg"),
-            GameItem("Game Title 3", "125", "http://example.com/thumb3.jpg")
-        )
-    }
-
 
 }

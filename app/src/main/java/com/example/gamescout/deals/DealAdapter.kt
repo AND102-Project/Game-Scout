@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.gamescout.R
 import com.example.gamescout.item_data.GameItem
 
-class DealAdapter(private val games: List<GameItem>) : RecyclerView.Adapter<DealAdapter.DealViewHolder>() {
+class DealAdapter(private var games: List<GameItem>) : RecyclerView.Adapter<DealAdapter.DealViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DealViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_game, parent, false)
@@ -21,6 +21,11 @@ class DealAdapter(private val games: List<GameItem>) : RecyclerView.Adapter<Deal
 
     override fun onBindViewHolder(holder: DealViewHolder, position: Int) {
         holder.bind(games[position])
+    }
+
+    fun updateData(newGames: List<GameItem>) {
+        games = newGames
+        notifyDataSetChanged()
     }
 
     class DealViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
