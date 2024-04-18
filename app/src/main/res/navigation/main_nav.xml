@@ -21,4 +21,9 @@
         android:name="com.example.gamescout.deals.DealsFragment"
         android:label="fragment_deals"
         tools:layout="@layout/fragment_deals" />
+    <fragment
+        android:id="@+id/gameDetailFragment"
+        android:name="com.example.gamescout.GameDetailFragment"
+        android:label="fragment_game_detail"
+        tools:layout="@layout/fragment_game_detail" />
 </navigation>

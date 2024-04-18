@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gamescout.cheapsharkAPI.RetrofitClient
 import com.example.gamescout.databinding.FragmentDealsBinding
-import com.example.gamescout.item_data.GameItem
+import com.example.gamescout.item_data.Dealtem
 import com.example.gamescout.item_data.StoreItem
 import retrofit2.Call
 import retrofit2.Callback
@@ -46,8 +46,8 @@ class DealsFragment : Fragment() {
     }
 
     private fun fetchDeals() {
-        RetrofitClient.instance.getDeals().enqueue(object : Callback<List<GameItem>> {
-            override fun onResponse(call: Call<List<GameItem>>, response: Response<List<GameItem>>) {
+        RetrofitClient.instance.getDeals().enqueue(object : Callback<List<Dealtem>> {
+            override fun onResponse(call: Call<List<Dealtem>>, response: Response<List<Dealtem>>) {
                 if (response.isSuccessful) {
                     response.body()?.let {
                         adapter.updateData(it)
@@ -57,7 +57,7 @@ class DealsFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<List<GameItem>>, t: Throwable) {
+            override fun onFailure(call: Call<List<Dealtem>>, t: Throwable) {
                 Timber.e("API Request Error: ${t.message}")
             }
         })
