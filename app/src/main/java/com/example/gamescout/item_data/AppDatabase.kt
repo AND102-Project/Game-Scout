@@ -5,10 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [EntryEntity::class], version = 1)
+@Database(entities = [GameEntity::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun articleDao(): GameDao
+    abstract fun gameDao(): GameDao
 
     companion object {
 
@@ -23,7 +23,7 @@ abstract class AppDatabase : RoomDatabase() {
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(
                 context.applicationContext,
-                AppDatabase::class.java, "Entry-db"
+                AppDatabase::class.java, "Games-db"
             ).build()
     }
 }

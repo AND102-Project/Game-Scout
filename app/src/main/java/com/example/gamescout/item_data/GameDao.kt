@@ -8,13 +8,13 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface GameDao {
     @Query("SELECT * FROM game_table")
-    fun getAll(): Flow<List<EntryEntity>>
+    fun getAll(): Flow<List<GameEntity>>
 
     @Insert
-    fun insertAll(entries: List<EntryEntity>)
+    fun insertAll(games: List<GameEntity>)
 
     @Insert
-    fun insert(entryEntity: EntryEntity)
+    fun insert(GameEntity: GameEntity)
 
     @Query("DELETE FROM game_table")
     fun deleteAll()
