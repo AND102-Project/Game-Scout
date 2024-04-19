@@ -1,4 +1,4 @@
-package com.example.bitfit
+package com.example.gamescout.favorites
 
 
 import android.annotation.SuppressLint
@@ -8,19 +8,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gamescout.R
-import com.example.gamescout.deals.FavoriteAdapter
-import com.example.gamescout.item_data.GameApplication
+import com.example.gamescout.database.GameApplication
 import com.example.gamescout.item_data.GameItem
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class FavoriteFragment : Fragment() {
 
@@ -61,19 +58,19 @@ class FavoriteFragment : Fragment() {
             databaseList.collect { list ->
                 val mappedList = list.map { entity ->
                     GameItem(
-                        entity.title,
-                        entity.description,
-                        entity.salePrice,
-                        entity.normalPrice,
-                        entity.thumb,
+                        entity.gameID,
                         entity.steamAppID,
-                        entity.storeID
+                        entity.cheapest,
+                        entity.cheapestDealID,
+                        entity.external,
+                        entity.internalName,
+                        entity.thumb
                     )
                 }
                 favGames.clear()
                 favGames.addAll(mappedList)
                 launch(Dispatchers.Main) {
-                    Log.d("test", "update")
+                    Timber.d("test", "update")
                     gameDisplay.notifyDataSetChanged()
                 }
             }

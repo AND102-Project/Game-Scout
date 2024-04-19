@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/startFragment">
+    app:startDestination="@id/favoriteFragment">
 
 
     <fragment
@@ -28,7 +28,7 @@
         tools:layout="@layout/fragment_game_detail" />
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="com.example.bitfit.FavoriteFragment"
+        android:name="com.example.gamescout.favorites.FavoriteFragment"
         android:label="FavoriteFragment"
         tools:layout= "@layout/fragment_favorite"/>
 </navigation>

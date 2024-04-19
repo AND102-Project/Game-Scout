@@ -11,19 +11,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.example.gamescout.R
 import com.example.gamescout.databinding.FragmentGameDetailBinding
-import com.example.gamescout.item_data.Dealtem
 import com.example.gamescout.item_data.GameItem
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-
-/**
- * A simple [Fragment] subclass.
- * Use the [GameDetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class GameDetailFragment : Fragment() {
 
     private var _binding: FragmentGameDetailBinding? = null
@@ -81,8 +73,9 @@ class GameDetailFragment : Fragment() {
                 gson.toJson(favorites)).apply()
         }
     }
-
+    //TODO
     private fun trackGamePrice(gameItem: GameItem) {
+
         // Here I don’t know how can we track Game Price change and change link to a cheaper vendor and send a push notification
     }
     override fun onDestroyView() {

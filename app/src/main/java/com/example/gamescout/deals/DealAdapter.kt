@@ -8,9 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.gamescout.R
-import com.example.gamescout.item_data.Dealtem
+import com.example.gamescout.item_data.DealItem
 
-class DealAdapter(private var deals: List<Dealtem>, private var storeMap: Map<String, String>) : RecyclerView.Adapter<DealAdapter.DealViewHolder>() {
+class DealAdapter(private var deals: List<DealItem>, private var storeMap: Map<String, String>) : RecyclerView.Adapter<DealAdapter.DealViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DealViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.deal_item, parent, false)
@@ -25,7 +25,7 @@ class DealAdapter(private var deals: List<Dealtem>, private var storeMap: Map<St
         holder.bind(deal, storeName)
     }
 
-    fun updateData(newDeals: List<Dealtem>) {
+    fun updateData(newDeals: List<DealItem>) {
         deals = newDeals
         notifyDataSetChanged()
     }
@@ -40,7 +40,7 @@ class DealAdapter(private var deals: List<Dealtem>, private var storeMap: Map<St
         private val bestPrice: TextView = itemView.findViewById(R.id.sale_price)
         private val store: TextView = itemView.findViewById(R.id.store)
 
-        fun bind(game: Dealtem, storeName: String) {
+        fun bind(game: DealItem, storeName: String) {
             titleTextView.text = game.title
             bestPrice.text = game.salePrice
             store.text = storeName
