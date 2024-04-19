@@ -13,7 +13,7 @@ import com.example.gamescout.item_data.Dealtem
 class DealAdapter(private var deals: List<Dealtem>, private var storeMap: Map<String, String>) : RecyclerView.Adapter<DealAdapter.DealViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DealViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_game, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.deal_item, parent, false)
         return DealViewHolder(view)
     }
 

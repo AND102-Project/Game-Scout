@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/startFragment">
+    app:startDestination="@id/gameDetailFragment">
 
 
     <fragment
@@ -23,7 +23,7 @@
         tools:layout="@layout/fragment_deals" />
     <fragment
         android:id="@+id/gameDetailFragment"
-        android:name="com.example.gamescout.GameDetailFragment"
+        android:name="com.example.gamescout.game_detail.GameDetailFragment"
         android:label="fragment_game_detail"
         tools:layout="@layout/fragment_game_detail" />
 </navigation>
