@@ -1,4 +1,4 @@
-package com.example.gamescout.item_data
+package com.example.gamescout.database
 
 import android.content.Context
 import androidx.room.Database

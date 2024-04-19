@@ -1,12 +1,11 @@
 package com.example.gamescout.item_data
 
 data class GameItem(
-    val title: String?,
-    val description: String?,
-    val salePrice: String?,
-    val normalPrice: String?,
-    val thumb: String?,
+    val gameID: String?,
     val steamAppID: String?,
-    val storeID: String?
+    val cheapest: String?,
+    val cheapestDealID:String?,
+    val external:String?,
+    val internalName:String?,
+    val thumb: String?,
 )
-

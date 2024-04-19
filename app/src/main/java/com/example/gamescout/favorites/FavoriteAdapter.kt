@@ -1,7 +1,6 @@
-package com.example.gamescout.deals
+package com.example.gamescout.favorites
 
 import android.content.Context
-import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gamescout.R
 import com.example.gamescout.item_data.GameItem
+import timber.log.Timber
 
 class FavoriteAdapter(private val context: Context, private val favGameList: List<GameItem>) :
     RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
@@ -19,7 +19,7 @@ class FavoriteAdapter(private val context: Context, private val favGameList: Lis
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: FavoriteAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val favGame = favGameList[position]
         holder.bind(favGame)
     }
@@ -52,9 +52,9 @@ class FavoriteAdapter(private val context: Context, private val favGameList: Lis
         }
 
         fun bind(favGameList: GameItem) {
-            Log.d("test", favGameList.toString())
-            favoriteTitleTv.text = favGameList.title.toString()
-            favoritePriceTv.text = favGameList.salePrice.toString()
+            Timber.d("test", favGameList.toString())
+            favoriteTitleTv.text = favGameList.external.toString()
+            favoritePriceTv.text = favGameList.cheapest.toString()
         }
     }
 

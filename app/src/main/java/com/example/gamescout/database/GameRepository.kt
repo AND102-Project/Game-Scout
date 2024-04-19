@@ -1,5 +1,4 @@
-package com.example.gamescout.item_data
-
+package com.example.gamescout.database
 
 import kotlinx.coroutines.flow.Flow
 
@@ -30,13 +29,13 @@ class GameRepository(private val gameDao: GameDao) {
         for (i in 1..10) {
             dummyData.add(
                 GameEntity(
-                    title = "Game $i",
-                    description = "Description $i",
-                    salePrice = "$i.99",
-                    normalPrice = "$i.99",
-                    thumb = "https://example.com/image$i.jpg",
-                    steamAppID = "steamAppID$i",
-                    storeID = "storeID$i"
+                    gameID = "Game $i",
+                    steamAppID = "Description $i",
+                    cheapest = "$i.99",
+                    cheapestDealID = "$i.99",
+                    external = "https://example.com/image$i.jpg",
+                    internalName = "steamAppID$i",
+                    thumb = "storeID$i"
                 )
             )
         }

@@ -1,4 +1,4 @@
-package com.example.gamescout.item_data
+package com.example.gamescout.database
 
 import androidx.room.Dao
 import androidx.room.Insert
