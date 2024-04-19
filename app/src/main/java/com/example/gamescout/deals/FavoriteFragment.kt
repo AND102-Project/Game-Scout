@@ -19,6 +19,7 @@ import com.example.gamescout.deals.FavoriteAdapter
 import com.example.gamescout.item_data.GameApplication
 import com.example.gamescout.item_data.GameItem
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class FavoriteFragment : Fragment() {
@@ -46,39 +47,68 @@ class FavoriteFragment : Fragment() {
         return view
     }
 
+    private val repository by lazy {
+        (requireActivity().application as GameApplication).repository
+    }
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         lifecycleScope.launch(Dispatchers.IO) {
-            (requireActivity().application as GameApplication).db.gameDao().getAll()
-                .collect { databaseList ->
-                    favGames.clear()
-                    databaseList.map { entity ->
-                        GameItem(
-                            entity.title,
-                            entity.description,
-                            entity.salePrice,
-                            entity.normalPrice,
-                            entity.thumb,
-                            entity.steamAppID,
-                            entity.storeID
-
-                            )
-                    }.also { mappedList ->
-                        favGames.addAll(mappedList)
-                        launch(Dispatchers.Main) {
-                            Log.d("test", "update")
-
-                            gameDisplay.notifyDataSetChanged()
-
-                        }
-                    }
-
-
+            repository.insertDummyData()
+            val databaseList = repository.getAll()
+            databaseList.collect { list ->
+                val mappedList = list.map { entity ->
+                    GameItem(
+                        entity.title,
+                        entity.description,
+                        entity.salePrice,
+                        entity.normalPrice,
+                        entity.thumb,
+                        entity.steamAppID,
+                        entity.storeID
+                    )
                 }
+                favGames.clear()
+                favGames.addAll(mappedList)
+                launch(Dispatchers.Main) {
+                    Log.d("test", "update")
+                    gameDisplay.notifyDataSetChanged()
+                }
+            }
         }
+
+
+//        lifecycleScope.launch(Dispatchers.IO) {
+//            (requireActivity().application as GameApplication).db.gameDao().getAll()
+//                .collect { databaseList ->
+//                    favGames.clear()
+//                    databaseList.map { entity ->
+//                        GameItem(
+//                            entity.title,
+//                            entity.description,
+//                            entity.salePrice,
+//                            entity.normalPrice,
+//                            entity.thumb,
+//                            entity.steamAppID,
+//                            entity.storeID
+//
+//                            )
+//                    }
+//                        .also { mappedList ->
+//                        favGames.addAll(mappedList)
+//                        launch(Dispatchers.Main) {
+//                            Log.d("test", "update")
+//
+//                            gameDisplay.notifyDataSetChanged()
+//
+//                        }
+//                    }
+//
+//
+//                }
+//        }
 
     }
 }

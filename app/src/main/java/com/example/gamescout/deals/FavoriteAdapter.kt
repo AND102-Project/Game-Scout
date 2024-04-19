@@ -2,6 +2,7 @@ package com.example.gamescout.deals
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +33,7 @@ class FavoriteAdapter(private val context: Context, private val favGameList: Lis
 
         private val favoriteTitleTv = itemView.findViewById<TextView>(R.id.favTitleTv)
         private val favoritePriceTv = itemView.findViewById<TextView>(R.id.favPriceTv)
-        private val thumbImageView = itemView.findViewById<TextView>(R.id.favThumbIv)
+
 
         init {
             itemView.setOnClickListener(this)
@@ -51,8 +52,9 @@ class FavoriteAdapter(private val context: Context, private val favGameList: Lis
         }
 
         fun bind(favGameList: GameItem) {
-            favoriteTitleTv.text = favGameList.title
-            favoritePriceTv.text = favGameList.salePrice
+            Log.d("test", favGameList.toString())
+            favoriteTitleTv.text = favGameList.title.toString()
+            favoritePriceTv.text = favGameList.salePrice.toString()
         }
     }
 
