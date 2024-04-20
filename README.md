@@ -21,7 +21,7 @@ This platform serves as a comprehensive price comparison and tracking tool for v
 - **Habit:** Gamers are encouraged to regularly check the app for updates on their favorite games and price alerts. The habit of “deal hunting” becomes a part of their gaming routine, with the app serving as a one-stop shop for discovering and purchasing games at the best prices.
 - **Scope:** The first version (V1) focuses on basic price tracking and comparison features across major game stores. Version 2 (V2) would introduce price history graphs and customizable alerts. Future updates could add support for additional digital stores, a community-driven feature allowing users to share deals, and personalized recommendations based on user preferences and purchase history.
 - **API** Uses CheapShark API to get game price comparisons. 
-- 
+  
 ## Product Spec
 
 ### 1. User Features (Required and Optional)
@@ -95,17 +95,52 @@ This platform serves as a comprehensive price comparison and tracking tool for v
 
 [Add screenshot of your Project Board with three milestones visible in
 this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+
+<img src="docs/ProjectBoard.png" width=600>
+
+<img src="https://i.imgur.com/FBH9vMo.png" width=600>
 
 ## Issue cards
 
-- [Add screenshot of your Project Board with the issues that you've been working on for this unit's milestone] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
-- [Add screenshot of your Project Board with the issues that you're working on in the **NEXT sprint**. It should include issues for next unit with assigned owners.] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+- [Add screenshot of your Project Board with the issues that you've been working on for this unit's milestone]
+  <img src="docs/IssuesUnit8.png" width=600>
+- [Add screenshot of your Project Board with the issues that you're working on in the **NEXT sprint**. It should include issues for next unit with assigned owners.]
+  
+  <img src="https://i.imgur.com/RmPF71j.png" width=600>
 
 ## Issues worked on this sprint
 
 - List the issues you completed this sprint
+
+  **Display a list of games on sale - On Sale Fragment:**
+
+*  Recycler view for game items
+*  Game item object created
+*  Search for game bar. Needs query from api
+*  button on games that adds to favorates
+
+**Display user wishlist - Wishlist Fragment:**
+
+* Recycler view for games on the wishlist
+* Local database for games to be displayed on the recycler viewer
+* Display mock data for testing
+
+**Display details about a selected game - Details Activity**
+* Should have prices for game and where the game is being sold from
+* should have button to add to favorates
+* should have buttons to buy games from that vender
+  
 - [Add giphy that shows current build progress for Milestone 2. Note: We will be looking for progression of work between Milestone 2 and 3. Make sure your giphys are not duplicated and clearly show the change from Sprint 1 to 2.]
+
+<img src="docs/OnSaleV1.gif" width=300>
+
+<img src="docs/FavoritesV1.gif" width=300>
+
+<img src="https://i.imgur.com/wdXRgkW.gif" width=300>
+
+
+
+  
 
 <br>
 

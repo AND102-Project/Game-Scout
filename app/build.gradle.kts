@@ -1,6 +1,11 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+
+    id("kotlin-parcelize")
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.0.0-Beta5"
+    id("kotlin-android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -48,11 +53,16 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.timber)
-    implementation(libs.glide)
     implementation(libs.retrofit)
     implementation(libs.converter)
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    annotationProcessor(libs.room.compiler)
     annotationProcessor(libs.glide)
+    kapt(libs.room.compiler)
+    implementation(libs.glide)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
 }
