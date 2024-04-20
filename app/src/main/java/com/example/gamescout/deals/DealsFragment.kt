@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gamescout.cheapsharkAPI.RetrofitClient
 import com.example.gamescout.databinding.FragmentDealsBinding
@@ -37,7 +38,10 @@ class DealsFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        adapter = DealAdapter(emptyList(), storeMap)
+        adapter = DealAdapter(emptyList(), storeMap) { gameItem ->
+            val action = DealsFragmentDirections.actionDealsFragmentToGameDetailFragment(gameItem)
+            findNavController().navigate(action)
+        }
         binding.gamesRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.gamesRecyclerView.adapter = adapter
 

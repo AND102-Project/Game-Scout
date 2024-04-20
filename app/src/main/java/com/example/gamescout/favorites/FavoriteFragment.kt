@@ -3,7 +3,6 @@ package com.example.gamescout.favorites
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -75,37 +74,6 @@ class FavoriteFragment : Fragment() {
                 }
             }
         }
-
-
-//        lifecycleScope.launch(Dispatchers.IO) {
-//            (requireActivity().application as GameApplication).db.gameDao().getAll()
-//                .collect { databaseList ->
-//                    favGames.clear()
-//                    databaseList.map { entity ->
-//                        GameItem(
-//                            entity.title,
-//                            entity.description,
-//                            entity.salePrice,
-//                            entity.normalPrice,
-//                            entity.thumb,
-//                            entity.steamAppID,
-//                            entity.storeID
-//
-//                            )
-//                    }
-//                        .also { mappedList ->
-//                        favGames.addAll(mappedList)
-//                        launch(Dispatchers.Main) {
-//                            Log.d("test", "update")
-//
-//                            gameDisplay.notifyDataSetChanged()
-//
-//                        }
-//                    }
-//
-//
-//                }
-//        }
 
     }
 }

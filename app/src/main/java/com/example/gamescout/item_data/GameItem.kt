@@ -1,5 +1,9 @@
 package com.example.gamescout.item_data
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class GameItem(
     val gameID: String?,
     val steamAppID: String?,
@@ -8,4 +12,4 @@ data class GameItem(
     val external:String?,
     val internalName:String?,
     val thumb: String?,
-)
+) : Parcelable
