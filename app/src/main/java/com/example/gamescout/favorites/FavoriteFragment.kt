@@ -1,58 +1,60 @@
 package com.example.gamescout.favorites
 
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.gamescout.R
 import com.example.gamescout.database.GameApplication
+import com.example.gamescout.databinding.FragmentFavoriteBinding
 import com.example.gamescout.item_data.GameItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import timber.log.Timber
+import kotlinx.coroutines.withContext
 
 class FavoriteFragment : Fragment() {
 
+    private var _binding: FragmentFavoriteBinding? = null
+    private val binding get() = _binding!!
 
     private val favGames = mutableListOf<GameItem>()
-    private lateinit var favGameAdapter: RecyclerView
-    private lateinit var gameDisplay : FavoriteAdapter
+    private lateinit var adapter: FavoriteAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_favorite, container, false)
-
-        favGameAdapter = view.findViewById(R.id.favoriteRV)
-        gameDisplay = FavoriteAdapter(requireContext(), favGames)
-        favGameAdapter.adapter = gameDisplay
-
-        favGameAdapter.layoutManager = LinearLayoutManager(requireContext()).also {
-            val dividerItemDecoration = DividerItemDecoration(requireContext(), it.orientation)
-            favGameAdapter.addItemDecoration(dividerItemDecoration)
-        }
-        return view
+    ): View {
+        _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     private val repository by lazy {
         (requireActivity().application as GameApplication).repository
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        adapter = FavoriteAdapter(requireContext(), favGames) { gameItem ->
+            val action = FavoriteFragmentDirections.actionFavoriteFragmentToGameDetailFragment(gameItem)
+            findNavController().navigate(action)
+        }
+
+        binding.favoriteRV.adapter = adapter
+        binding.favoriteRV.layoutManager = LinearLayoutManager(requireContext())
+        val dividerItemDecoration = DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
+        binding.favoriteRV.addItemDecoration(dividerItemDecoration)
+
+        fetchFavoriteGames()
+    }
+
+    private fun fetchFavoriteGames() {
         lifecycleScope.launch(Dispatchers.IO) {
-            repository.insertDummyData()
             val databaseList = repository.getAll()
             databaseList.collect { list ->
                 val mappedList = list.map { entity ->
@@ -66,14 +68,18 @@ class FavoriteFragment : Fragment() {
                         entity.thumb
                     )
                 }
-                favGames.clear()
-                favGames.addAll(mappedList)
-                launch(Dispatchers.Main) {
-                    Timber.d("test", "update")
-                    gameDisplay.notifyDataSetChanged()
+                withContext(Dispatchers.Main) {
+                    favGames.clear()
+                    favGames.addAll(mappedList)
+                    adapter.notifyDataSetChanged()
                 }
             }
         }
-
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null  // Important to avoid memory leaks
+    }
+
 }
