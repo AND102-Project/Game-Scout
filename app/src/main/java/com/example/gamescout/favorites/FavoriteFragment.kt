@@ -53,6 +53,7 @@ class FavoriteFragment : Fragment() {
         fetchFavoriteGames()
     }
 
+    // DON' T DELETE - PENDING IMPLEMENTATION
 //    private fun fetchFavoriteGames() {
 //        lifecycleScope.launch(Dispatchers.IO) {
 //            val databaseList = repository.getAll()
@@ -77,7 +78,7 @@ class FavoriteFragment : Fragment() {
 //        }
 //    }
 
-// DON' T DELETE - PENDING IMPLEMENTATION
+
     private fun fetchFavoriteGames() {
     lifecycleScope.launch(Dispatchers.IO) {
         (requireActivity().application as GameApplication).db.gameDao().getAll()

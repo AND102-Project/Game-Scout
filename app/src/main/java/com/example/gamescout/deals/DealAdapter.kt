@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -16,6 +17,7 @@ import com.example.gamescout.item_data.DealItem
 import com.example.gamescout.item_data.GameItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class DealAdapter(
     private var deals: List<DealItem>,
@@ -106,7 +108,18 @@ class DealAdapter(
                 thumb = dealItem.thumb
             )
             lifecycleScope.launch(Dispatchers.IO) {
-                gameDao.insert(gameEntity)
+                // Check if the game already exists in the database
+                val existingGame = gameEntity.gameID?.let { gameDao.getGameById(it) }
+                if (existingGame != null) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(itemView.context, "Game is already in favorites", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    gameDao.insert(gameEntity)
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(itemView.context, "Game added to favorites", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
         }
     }

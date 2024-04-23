@@ -22,4 +22,7 @@ interface GameDao {
     @Query("DELETE FROM game_table")
     fun delete()
 
+    @Query("SELECT * FROM game_table WHERE gameID = :gameId")
+    fun getGameById(gameId: String): GameEntity?
+
 }
