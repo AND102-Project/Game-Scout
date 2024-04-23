@@ -1,6 +1,5 @@
 package com.example.gamescout.game_detail
 
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
@@ -21,21 +20,14 @@ class GameDetailFragment : Fragment() {
     private var _binding: FragmentGameDetailBinding? = null
     private val binding get() = _binding!!
     private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var gameItem: GameItem
     private val gson = Gson()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentGameDetailBinding.inflate(inflater, container,
-            false)
-        sharedPreferences =
-            requireActivity().getSharedPreferences("GameScoutPreferences",
-                Context.MODE_PRIVATE)
-
-        gameItem = GameItem("Sample Game", "123",
-            "http://example.com/thumb.jpg", "29.99", "1", "deal-id",  "test.jpg")
-        displayGameDetails(gameItem)
+        _binding = FragmentGameDetailBinding.inflate(inflater, container, false)
+        val args = GameDetailFragmentArgs.fromBundle(requireArguments())
+        args.gameItem?.let { displayGameDetails(it) }
         return binding.root
     }
 
@@ -73,9 +65,9 @@ class GameDetailFragment : Fragment() {
                 gson.toJson(favorites)).apply()
         }
     }
-    //TODO
-    private fun trackGamePrice(gameItem: GameItem) {
 
+    private fun trackGamePrice(gameItem: GameItem) {
+    //TODO
         // Here I don’t know how can we track Game Price change and change link to a cheaper vendor and send a push notification
     }
     override fun onDestroyView() {

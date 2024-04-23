@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/gameDetailFragment">
+    app:startDestination="@id/startFragment">
 
 
     <fragment
@@ -20,15 +20,30 @@
         android:id="@+id/dealsFragment"
         android:name="com.example.gamescout.deals.DealsFragment"
         android:label="fragment_deals"
-        tools:layout="@layout/fragment_deals" />
+        tools:layout="@layout/fragment_deals" >
+        <action
+            android:id="@+id/action_dealsFragment_to_gameDetailFragment"
+            app:destination="@id/gameDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/gameDetailFragment"
         android:name="com.example.gamescout.game_detail.GameDetailFragment"
         android:label="fragment_game_detail"
-        tools:layout="@layout/fragment_game_detail" />
+        tools:layout="@layout/fragment_game_detail" >
+        <argument
+            android:name="gameItem"
+            app:argType="com.example.gamescout.item_data.GameItem"
+            app:nullable="true"
+            />
+    </fragment>
+
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.example.gamescout.favorites.FavoriteFragment"
         android:label="FavoriteFragment"
-        tools:layout= "@layout/fragment_favorite"/>
+        tools:layout= "@layout/fragment_favorite">
+        <action
+            android:id="@+id/action_favoriteFragment_to_gameDetailFragment"
+            app:destination="@id/gameDetailFragment" />
+    </fragment>
 </navigation>

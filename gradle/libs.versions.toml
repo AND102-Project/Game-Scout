@@ -13,8 +13,9 @@ navigationFragmentKtx = "2.7.7"
 navigationUiKtx = "2.7.7"
 timber = "5.0.1"
 glide = "4.16.0"
-squareup = "2.9.0"
+squareup = "2.11.0"
 room_version = "2.6.1"
+safe-args = "2.7.7"
 
 
 [libraries]
@@ -40,5 +41,6 @@ room-compiler = {group = "androidx.room", name = "room-compiler", version.ref = 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+navigationSafeArgs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "safe-args" }
 
 
