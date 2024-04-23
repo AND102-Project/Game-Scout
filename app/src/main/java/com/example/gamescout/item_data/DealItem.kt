@@ -1,5 +1,8 @@
 package com.example.gamescout.item_data
 
+import androidx.room.ColumnInfo
+import androidx.room.PrimaryKey
+
 data class DealItem(
     val internalName: String?,
     val title: String?,
@@ -7,6 +10,9 @@ data class DealItem(
     val dealID: String?,
     val storeID : String?,
     val gameID: String?,
+    val cheapest : String?,
+    val cheapestDealID: String?,
+    val external : String?,
     val salePrice : String?,
     val normalPrice : String?,
     val isOnSale : String?,
