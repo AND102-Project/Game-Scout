@@ -33,9 +33,9 @@ class FavoriteFragment : Fragment() {
         return binding.root
     }
 
-    private val repository by lazy {
-        (requireActivity().application as GameApplication).repository
-    }
+//    private val repository by lazy {
+//        (requireActivity().application as GameApplication).repository
+//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,11 +53,37 @@ class FavoriteFragment : Fragment() {
         fetchFavoriteGames()
     }
 
+//    private fun fetchFavoriteGames() {
+//        lifecycleScope.launch(Dispatchers.IO) {
+//            val databaseList = repository.getAll()
+//            databaseList.collect { list ->
+//                val mappedList = list.map { entity ->
+//                    GameItem(
+//                        entity.gameID,
+//                        entity.steamAppID,
+//                        entity.cheapest,
+//                        entity.cheapestDealID,
+//                        entity.external,
+//                        entity.internalName,
+//                        entity.thumb
+//                    )
+//                }
+//                withContext(Dispatchers.Main) {
+//                    favGames.clear()
+//                    favGames.addAll(mappedList)
+//                    adapter.notifyDataSetChanged()
+//                }
+//            }
+//        }
+//    }
+
+// DON' T DELETE - PENDING IMPLEMENTATION
     private fun fetchFavoriteGames() {
-        lifecycleScope.launch(Dispatchers.IO) {
-            val databaseList = repository.getAll()
-            databaseList.collect { list ->
-                val mappedList = list.map { entity ->
+    lifecycleScope.launch(Dispatchers.IO) {
+        (requireActivity().application as GameApplication).db.gameDao().getAll()
+            .collect { databaseList ->
+                favGames.clear()
+                databaseList.map { entity ->
                     GameItem(
                         entity.gameID,
                         entity.steamAppID,
@@ -66,16 +92,19 @@ class FavoriteFragment : Fragment() {
                         entity.external,
                         entity.internalName,
                         entity.thumb
+
                     )
                 }
-                withContext(Dispatchers.Main) {
-                    favGames.clear()
-                    favGames.addAll(mappedList)
-                    adapter.notifyDataSetChanged()
-                }
+                    .also { mappedList ->
+                        favGames.addAll(mappedList)
+                        launch(Dispatchers.Main) {
+                            adapter.notifyDataSetChanged()
+                        }
+                    }
             }
-        }
     }
+}
+
 
     override fun onDestroyView() {
         super.onDestroyView()

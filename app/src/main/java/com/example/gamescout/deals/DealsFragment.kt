@@ -5,12 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gamescout.cheapsharkAPI.RetrofitClient
+import com.example.gamescout.database.GameApplication
 import com.example.gamescout.databinding.FragmentDealsBinding
 import com.example.gamescout.item_data.DealItem
+import com.example.gamescout.item_data.GameItem
 import com.example.gamescout.item_data.StoreItem
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,11 +43,14 @@ class DealsFragment : Fragment() {
         setupRecyclerView()
     }
 
+
     private fun setupRecyclerView() {
-        adapter = DealAdapter(emptyList(), storeMap) { gameItem ->
+        val gameDao = (requireActivity().application as GameApplication).db.gameDao()
+
+        adapter = DealAdapter(emptyList(), storeMap, { gameItem ->
             val action = DealsFragmentDirections.actionDealsFragmentToGameDetailFragment(gameItem)
             findNavController().navigate(action)
-        }
+        }, gameDao, viewLifecycleOwner.lifecycleScope)
         binding.gamesRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.gamesRecyclerView.adapter = adapter
 
@@ -85,6 +94,7 @@ class DealsFragment : Fragment() {
             }
         })
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
