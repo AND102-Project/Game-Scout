@@ -10,6 +10,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.gamescout.databinding.ActivityMainBinding
 import com.example.gamescout.firebase.AuthManager
+import com.google.firebase.auth.FirebaseAuth
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
@@ -32,6 +33,15 @@ class MainActivity : AppCompatActivity() {
             invalidateOptionsMenu()
         }
         setSupportActionBar(findViewById(R.id.toolbar))
+
+        // Check if a user is already signed in
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            Timber.d("User is already signed in, navigating to DealsFragment")
+            navController.navigate(R.id.dealsFragment)
+        } else {
+            Timber.d("User is not signed in, navigating to StartFragment")
+        }
 
 
         Timber.d("MainActivity onCreate completed")
