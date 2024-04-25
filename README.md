@@ -186,8 +186,12 @@ this section]
 **Detailed Price History Graphs and Customizable Alerts (Planned for V2)**
 * Planning to introduce graphs showing historical price data and alerts for price drops in the next version to enhance user decision-making.
   
-**Community-Driven Features to Share Deals** 
+**Community-Driven Features to Share Deals (Planned for V2)** 
 * This feature is still under consideration and may be introduced in a later version to foster a community-centric approach.
+
+**Upload and Manage Profile Picture (Planned for V2)**
+*Planning on implementing functionality within the user profile settings that allows users to upload, view, and change their profile picture. 
+
 
 
 [Add video/gif of your current application that shows build progress]
