@@ -190,7 +190,7 @@ this section]
 * This feature is still under consideration and may be introduced in a later version to foster a community-centric approach.
 
 **Upload and Manage Profile Picture (Planned for V2)**
-*Planning on implementing functionality within the user profile settings that allows users to upload, view, and change their profile picture. 
+* Planning on implementing functionality within the user profile settings that allows users to upload, view, and change their profile picture. 
 
 
 
