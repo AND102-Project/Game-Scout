@@ -64,6 +64,9 @@ class MainActivity : AppCompatActivity() {
                 menu.findItem(R.id.action_logout)?.isVisible = false
                 binding.bottomNavigation.visibility = View.GONE
             }
+            R.id.gameDetailFragment -> {
+                binding.bottomNavigation.visibility = View.GONE
+            }
             else -> {
                 // Show menus
                 menu.findItem(R.id.action_logout)?.isVisible = true
