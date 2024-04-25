@@ -11,6 +11,7 @@ import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.gamescout.R
+import com.example.gamescout.cheapsharkAPI.RetrofitClient
 import com.example.gamescout.database.GameDao
 import com.example.gamescout.database.GameEntity
 import com.example.gamescout.item_data.DealItem
@@ -18,6 +19,9 @@ import com.example.gamescout.item_data.GameItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class DealAdapter(
     private var deals: List<DealItem>,
@@ -62,7 +66,7 @@ class DealAdapter(
         private val bestPrice: TextView = itemView.findViewById(R.id.sale_price)
         private val store: TextView = itemView.findViewById(R.id.store)
 
-        val favoriteButton = itemView.findViewById<Button>(R.id.fav_button)
+        private val favoriteButton = itemView.findViewById<Button>(R.id.fav_button)
         fun bind(deal: DealItem, storeName: String?) {
             titleTextView.text = deal.title
             bestPrice.text = deal.salePrice
@@ -80,7 +84,9 @@ class DealAdapter(
                     deal.internalName,
                     deal.thumb
                 )
+
                 insertGameIntoDatabase(dealItem)
+                setPriceAlert("saniz.sth123@gmail.com", dealItem.gameID.toString(), dealItem.cheapest.toString())
             }
 
             itemView.setOnClickListener {
@@ -96,6 +102,7 @@ class DealAdapter(
                 onItemClicked(gameItem)
             }
         }
+
         private fun insertGameIntoDatabase(dealItem: GameItem) {
             // Convert DealItem to a database entity
             val gameEntity = GameEntity(
@@ -122,5 +129,28 @@ class DealAdapter(
                 }
             }
         }
+        private fun setPriceAlert(email: String, gameID: String, price:
+        String) {
+            RetrofitClient.instance.setPriceAlert(email, gameID,
+                price).enqueue(object : Callback<Boolean> {
+                override fun onResponse(call: Call<Boolean>, response:
+                Response<Boolean>
+                ) {
+                    if (response.isSuccessful && response.body() == true) {
+                        Toast.makeText(itemView.context, "Alert set successfully",
+                            Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(itemView.context, "Failed to set alert",
+                            Toast.LENGTH_SHORT).show()
+                    }
+                }
+                override fun onFailure(call: Call<Boolean>, t: Throwable) {
+                    Toast.makeText(itemView.context, "Error: ${t.localizedMessage}",
+                        Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
     }
+
 }
+

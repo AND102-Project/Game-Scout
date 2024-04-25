@@ -86,12 +86,22 @@
             <!-- Go Back Button -->
 
             <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_alert_price"
+                android:layout_marginTop="8dp"
+                android:text="Send an alert"
+                app:layout_constraintTop_toBottomOf="@id/button_track_price"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"    />
+
+            <Button
                 android:id="@+id/button_go_back"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Go Back"
-                app:layout_constraintTop_toBottomOf="@id/button_track_price"
+                app:layout_constraintTop_toBottomOf="@id/button_alert_price"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
