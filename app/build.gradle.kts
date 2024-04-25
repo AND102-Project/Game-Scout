@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.navigationSafeArgs)
+    alias(libs.plugins.googleService)
 
     id("kotlin-parcelize")
     id("org.jetbrains.kotlin.plugin.serialization") version "2.0.0-RC1"
@@ -59,6 +60,11 @@ dependencies {
     implementation(libs.converter)
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.ui.auth)
+    //implementation(libs.play.services.auth)
     annotationProcessor(libs.room.compiler)
     annotationProcessor(libs.glide)
     kapt(libs.room.compiler)
