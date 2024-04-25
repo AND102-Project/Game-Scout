@@ -152,32 +152,32 @@ this section]
 
 # Completed user stories
 
-## Display a list of games on sale
+**Display a list of games on sale**
 - Users can view games currently on sale from various platforms, displayed using a RecyclerView in the On Sale Fragment
-## Game Item Object
+**Game Item Object**
 - Created a structured object to manage and display game data efficiently.
-## Search for Game
+**Search for Game**
 - Added a functional search bar that integrates with the API to help users find specific games.
-## Add Games to Favorites
+**Add Games to Favorites**
 - Users can add games to their favorites list through a button in the game item display, enhancing personalized tracking.
-## Display User Wishlist
+**Display User Wishlist**
 - The Wishlist Fragment shows games from the user's favorites using a RecyclerView.
 - A local database supports persistent storage and display of favorite games.
-## Display Mock Data for Testing
+**Display Mock Data for Testing**
 - Implemented mock data in the Wishlist Fragment to facilitate development and testing of the display and functionality.
-## Display Details About a Selected Game
+**Display Details About a Selected Game**
 - Developed a detailed view for each game, showing prices from various vendors, the best and alternative prices, and the retail price.
 - Added functionality for users to add games to favorites and links to purchase games from specific vendors.
-## Login Page with Google Authentication
+**Login Page with Google Authentication**
 - Implemented a login page that supports Google authentication, allowing for user account management and personalization.
 
 # Pending or Cut User Stories
 
-## Suggestions Based on Favored Games (Planned for V2)
+**Suggestions Based on Favored Games (Planned for V2)**
 - Planning to add a feature to suggest games based on user favorites, providing a tailored browsing experience.
-## Detailed Price History Graphs and Customizable Alerts (Planned for V2)
+**Detailed Price History Graphs and Customizable Alerts (Planned for V2)**
 - Planning to introduce graphs showing historical price data and alerts for price drops in the next version to enhance user decision-making.
-## Community-Driven Features to Share Deals 
+**Community-Driven Features to Share Deals** 
 - This feature is still under consideration and may be introduced in a later version to foster a community-centric approach.
 
 
