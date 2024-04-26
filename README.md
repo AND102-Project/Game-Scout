@@ -192,11 +192,6 @@ this section]
 **Upload and Manage Profile Picture (Planned for V2)**
 * Planning on implementing functionality within the user profile settings that allows users to upload, view, and change their profile picture. 
 
-
-
-[Add video/gif of your current application that shows build progress]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
-
 ## App Demo Video
 
-- Embed the YouTube/Vimeo link of your Completed Demo Day prep video
+[Click here to watch the video](https://youtu.be/vwekclSMF7E)
