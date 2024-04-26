@@ -1,7 +1,6 @@
 package com.example.gamescout.game_detail
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -16,25 +15,27 @@ import com.example.gamescout.cheapsharkAPI.RetrofitClient
 import com.example.gamescout.database.GameApplication
 import com.example.gamescout.database.GameEntity
 import com.example.gamescout.databinding.FragmentGameDetailBinding
+import com.example.gamescout.firebase.AuthManager
 import com.example.gamescout.item_data.GameItem
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 class GameDetailFragment : Fragment() {
 
     private var _binding: FragmentGameDetailBinding? = null
     private val gameDao by lazy { (requireActivity().application as GameApplication).db.gameDao() }
 
+    private val auth = AuthManager()
+    private val email = auth.getCurrentUser()?.email
+
+
     private val binding get() = _binding!!
-    private lateinit var sharedPreferences: SharedPreferences
-    private val gson = Gson()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -55,7 +56,7 @@ class GameDetailFragment : Fragment() {
             internalName = gameItem.internalName,
             thumb = gameItem.thumb
         )
-
+        setPriceAlert(gameItem.gameID.toString(), gameItem.cheapest.toString())
         lifecycleScope.launch(Dispatchers.IO) {
             val existingGames = gameDao.getAll()
             existingGames.collect { games ->
@@ -69,6 +70,7 @@ class GameDetailFragment : Fragment() {
             }
         }
     }
+
 
     private fun displayGameDetails(gameItem: GameItem) {
         Glide.with(this)
@@ -117,18 +119,7 @@ class GameDetailFragment : Fragment() {
         }
     }
 
-    private fun addGameToFavorites(gameItem: GameItem) {
-        val favoritesJson = sharedPreferences.getString("favorites", "[]")
-        val type = object : TypeToken<MutableList<GameItem>>() {}.type
-        val favorites: MutableList<GameItem> =
-            gson.fromJson(favoritesJson, type)
-        if (!favorites.any { it.steamAppID == gameItem.steamAppID }) {
-            favorites.add(gameItem)
-            setPriceAlert("saniz.sth123@gmail.com", gameItem.gameID.toString(), gameItem.cheapest.toString())
-            sharedPreferences.edit().putString("favorites",
-                gson.toJson(favorites)).apply()
-        }
-    }
+
 
     private fun trackGamePrice(gameItem: GameItem) {
     //TODO
@@ -144,29 +135,34 @@ class GameDetailFragment : Fragment() {
         binding.buttonAlertPrice.setOnClickListener {
 //            val email = FirebaseAuth.getInstance().currentUser?.email
             val gameID =  gameItem.gameID
-            val price = "0.00"
-            setPriceAlert("saniz.sth123@gmail.com", gameID.toString(), price)
+            val price = "100.00"
+            setPriceAlert(gameID.toString(), price)
         }
     }
-    private fun setPriceAlert(email: String, gameID: String, price:
+    private fun setPriceAlert(gameID: String, price:
     String) {
-        RetrofitClient.instance.setPriceAlert(email, gameID,
-            price).enqueue(object : Callback<Boolean> {
-            override fun onResponse(call: Call<Boolean>, response:
-            Response<Boolean>
-            ) {
-                if (response.isSuccessful && response.body() == true) {
-                    Toast.makeText(context, "Alert set successfully",
-                        Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(context, "Failed to set alert",
+
+        if (email != null) {
+            RetrofitClient.instance.setPriceAlert(email.toString(), gameID,
+                price).enqueue(object : Callback<Boolean> {
+                override fun onResponse(call: Call<Boolean>, response:
+                Response<Boolean>
+                ) {
+                    if (response.isSuccessful && response.body() == true) {
+                        Toast.makeText(context, "Alert set successfully",
+                            Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(context, "Failed to set alert",
+                            Toast.LENGTH_SHORT).show()
+                    }
+                }
+                override fun onFailure(call: Call<Boolean>, t: Throwable) {
+                    Toast.makeText(context, "Error: ${t.localizedMessage}",
                         Toast.LENGTH_SHORT).show()
                 }
-            }
-            override fun onFailure(call: Call<Boolean>, t: Throwable) {
-                Toast.makeText(context, "Error: ${t.localizedMessage}",
-                    Toast.LENGTH_SHORT).show()
-            }
-        })
+            })
+        } else {
+            Timber.d("Email is null!")
+        }
     }
 }
