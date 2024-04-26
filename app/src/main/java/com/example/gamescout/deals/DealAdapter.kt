@@ -69,6 +69,7 @@ class DealAdapter(
         private val bestPrice: TextView = itemView.findViewById(R.id.sale_price)
         private val store: TextView = itemView.findViewById(R.id.store)
 
+
         private val favoriteButton = itemView.findViewById<Button>(R.id.fav_button)
         private val auth = AuthManager()
         private val email = auth.getCurrentUser()?.email
@@ -77,33 +78,22 @@ class DealAdapter(
             bestPrice.text = deal.salePrice
             store.text = storeName ?: "Unknown Store"
             Glide.with(itemView.context).load(deal.thumb).into(thumbImageView)
+            val gameItem = GameItem(
+                deal.gameID,
+                deal.steamAppID,
+                deal.salePrice,
+                deal.dealID,
+                deal.title,
+                deal.internalName,
+                deal.thumb
+            )
 
             favoriteButton.setOnClickListener {
-                // Insert game into favorite database
-                val dealItem = GameItem(
-                    deal.gameID,
-                    deal.steamAppID,
-                    deal.salePrice,
-                    deal.dealID,
-                    deal.title,
-                    deal.internalName,
-                    deal.thumb
-                )
-
-                insertGameIntoDatabase(dealItem)
-                setPriceAlert(dealItem.gameID.toString(), dealItem.cheapest.toString())
+                insertGameIntoDatabase(gameItem)
+                setPriceAlert(gameItem.gameID.toString(), deal.normalPrice.toString())
             }
 
             itemView.setOnClickListener {
-                val gameItem = GameItem(
-                    deal.gameID,
-                    deal.steamAppID,
-                    deal.salePrice,
-                    deal.dealID,
-                    deal.title,
-                    deal.internalName,
-                    deal.thumb
-                )
                 onItemClicked(gameItem)
             }
         }

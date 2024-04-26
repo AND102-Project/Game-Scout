@@ -4,9 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.gamescout.R
+import com.example.gamescout.item_data.DealItem
 import com.example.gamescout.item_data.GameItem
 import timber.log.Timber
 
@@ -35,11 +38,16 @@ class FavoriteAdapter(
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val favoriteTitleTv = itemView.findViewById<TextView>(R.id.favTitleTv)
         private val favoritePriceTv = itemView.findViewById<TextView>(R.id.favPriceTv)
+        private val thumbImageView: ImageView = itemView.findViewById(R.id.favThumbIv)
 
         fun bind(favGame: GameItem) {
+            val dealId = favGame.cheapestDealID
+            //deal =
+
             Timber.d("Binding game: ${favGame.internalName}")
             favoriteTitleTv.text = favGame.internalName
             favoritePriceTv.text = favGame.cheapest
+            Glide.with(itemView.context).load(favGame.thumb).into(thumbImageView)
         }
     }
 }
