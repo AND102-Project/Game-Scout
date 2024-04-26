@@ -18,6 +18,7 @@ import com.example.gamescout.item_data.GameItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 class DealAdapter(
     private var deals: List<DealItem>,
@@ -36,16 +37,21 @@ class DealAdapter(
 
     override fun onBindViewHolder(holder: DealViewHolder, position: Int) {
         val deal = deals[position]
-        storeMap[deal.storeID]?.let { holder.bind(deal, it) }
+        val storeName = storeMap[deal.storeID]
+
+
+
+//        storeMap[deal.storeID]?.let { holder.bind(deal, it) }
+
+        holder.bind(deal, storeName)
     }
 
     fun updateData(newDeals: List<DealItem>) {
-        deals = newDeals
 
+        this.deals = newDeals
         notifyDataSetChanged()
-
-
     }
+
     fun updateStoreMap(newStoreMap: Map<String, String>) {
         storeMap = newStoreMap
         notifyDataSetChanged()  
@@ -64,10 +70,16 @@ class DealAdapter(
 
         val favoriteButton = itemView.findViewById<Button>(R.id.fav_button)
         fun bind(deal: DealItem, storeName: String?) {
-            titleTextView.text = deal.title
-            bestPrice.text = deal.salePrice
+            titleTextView.text = deal.title ?: "No title"
+            bestPrice.text = deal.salePrice ?: "No price"
             store.text = storeName ?: "Unknown Store"
-            Glide.with(itemView.context).load(deal.thumb).into(thumbImageView)
+            if (deal.thumb != null) {
+                Glide.with(itemView.context).load(deal.thumb).into(thumbImageView)
+            } else {
+                Timber.e("No thumbnail URL provided")
+            }
+
+//            Timber.i("Bound data: Title - ${deal.title}, Price - ${deal.salePrice}, Store - $storeName, Thumb - ${deal.thumb}")
 
             favoriteButton.setOnClickListener {
                 // Insert game into favorite database
@@ -96,6 +108,33 @@ class DealAdapter(
                 onItemClicked(gameItem)
             }
         }
+//        private fun insertGameIntoDatabase(dealItem: GameItem) {
+//            // Convert DealItem to a database entity
+//            val gameEntity = GameEntity(
+//                gameID = dealItem.gameID,
+//                steamAppID = dealItem.steamAppID,
+//                cheapest = dealItem.cheapest,
+//                cheapestDealID = dealItem.cheapestDealID,
+//                external = dealItem.external,
+//                internalName = dealItem.internalName,
+//                thumb = dealItem.thumb
+//            )
+//            lifecycleScope.launch(Dispatchers.IO) {
+//                // Check if the game already exists in the database
+//                val existingGame = gameEntity.gameID?.let { gameDao.getGameById(it) }
+//                if (existingGame != null) {
+//                    withContext(Dispatchers.Main) {
+//                        Toast.makeText(itemView.context, "Game is already in favorites", Toast.LENGTH_SHORT).show()
+//                    }
+//                } else {
+//                    gameDao.insert(gameEntity)
+//                    withContext(Dispatchers.Main) {
+//                        Toast.makeText(itemView.context, "Game added to favorites", Toast.LENGTH_SHORT).show()
+//                    }
+//                }
+//            }
+//        }
+
         private fun insertGameIntoDatabase(dealItem: GameItem) {
             // Convert DealItem to a database entity
             val gameEntity = GameEntity(
@@ -106,7 +145,12 @@ class DealAdapter(
                 external = dealItem.external,
                 internalName = dealItem.internalName,
                 thumb = dealItem.thumb
+
             )
+
+            // Log the GameEntity's external field
+            Timber.i("Inserting into database: Title - ${dealItem.external}")
+
             lifecycleScope.launch(Dispatchers.IO) {
                 // Check if the game already exists in the database
                 val existingGame = gameEntity.gameID?.let { gameDao.getGameById(it) }
@@ -123,4 +167,17 @@ class DealAdapter(
             }
         }
     }
+
+    ////////////////////////////
+
+    fun clearData() {
+        this.deals = emptyList()
+
+        this.storeMap = emptyMap()
+
+        notifyDataSetChanged()
+    }
+
 }
+
+

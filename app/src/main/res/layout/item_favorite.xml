@@ -20,7 +20,7 @@
 
     <ImageView
         android:id="@+id/favThumbIv"
-        android:layout_width="100dp"
+        android:layout_width="80dp"
         android:layout_height="100dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="36dp"
@@ -32,12 +32,14 @@
         android:id="@+id/favPriceTv"
         android:layout_width="68dp"
         android:layout_height="30dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="25dp"
         android:gravity="center"
         android:text="FREE"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
