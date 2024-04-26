@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "319527029749",
+    "project_id": "gamescout-55a61",
+    "storage_bucket": "gamescout-55a61.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319527029749:android:7b17b3c035835ccef3eebc",
+        "android_client_info": {
+          "package_name": "com.example.gamescout"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "319527029749-r64k8mi0tq4b1eq37otb095gj0r1dsf2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gamescout",
+            "certificate_hash": "f5bc72c4c6e44e72088b38ec77dc3bf71c609ee2"
+          }
+        },
+        {
+          "client_id": "319527029749-4dplhfd57s27o0ef6tdepmoglasa8ijp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEw4sANf_zlHaShHI1_Fso8FAm3xfWRik"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "319527029749-4dplhfd57s27o0ef6tdepmoglasa8ijp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
