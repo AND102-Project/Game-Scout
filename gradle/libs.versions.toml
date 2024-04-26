@@ -1,13 +1,13 @@
 [versions]
 agp = "8.3.2"
 kotlin = "1.9.0"
-coreKtx = "1.12.0"
+coreKtx = "1.13.0"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
 appcompat = "1.6.1"
 material = "1.11.0"
-activity = "1.8.2"
+activity = "1.9.0"
 constraintlayout = "2.1.4"
 navigationFragmentKtx = "2.7.7"
 navigationUiKtx = "2.7.7"
@@ -16,6 +16,10 @@ glide = "4.16.0"
 squareup = "2.11.0"
 room_version = "2.6.1"
 safe-args = "2.7.7"
+google-services = "4.4.1"
+firebase-bom = "32.8.1"
+play-services = "21.1.0"
+firebaseui = "8.0.2"
 
 
 [libraries]
@@ -36,11 +40,17 @@ converter = {group = "com.squareup.retrofit2", name= "converter-gson", version.r
 room-runtime = {group = "androidx.room", name = "room-runtime", version.ref = "room_version"}
 room-ktx = {group = "androidx.room", name = "room-ktx", version.ref = "room_version"}
 room-compiler = {group = "androidx.room", name = "room-compiler", version.ref = "room_version"}
+firebase-bom = {group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom"}
+firebase-analytics = {group = "com.google.firebase", name = "firebase-analytics"}
+firebase-auth = {group = "com.google.firebase", name = "firebase-auth"}
+firebase-ui-auth = {group = "com.firebaseui", name = "firebase-ui-auth", version.ref = "firebaseui"}
+play-services-auth = {group = "com.google.android.gms", name = "play-services-auth", version.ref = "play-services"}
+
 
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 navigationSafeArgs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "safe-args" }
-
+googleService = { id = "com.google.gms.google-services", version.ref = "google-services"}
 
