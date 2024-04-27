@@ -148,7 +148,7 @@ this section]
 
 ## GitHub Project board
 
-[Add screenshot of your Project Board with the updated status of issues for Milestone 3. Note that these should include the updated issues you worked on for this sprint and not be a duplicate of Milestone 2 Project board.] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+[Add screenshot of your Project Board with the updated status of issues for Milestone 3. Note that these should include the updated issues you worked on for this sprint and not be a duplicate of Milestone 2 Project board.]
 
 <img src="https://i.imgur.com/riVUXXl.png" width=600>
 
@@ -204,10 +204,16 @@ this section]
 
 **Builds**
 
+**Last build**
+
+<img src="https://i.imgur.com/X0mWisL.gif" width=300>
+
+**Build progress** 
+
 <img src="https://i.imgur.com/oTErhyX.gif" width=300>
 
 <img src="https://i.imgur.com/cPBqOaB.gif" width=300>
 
-<img src="https://i.imgur.com/X0mWisL.gif" width=300>
+
 
 
