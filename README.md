@@ -150,6 +150,10 @@ this section]
 
 [Add screenshot of your Project Board with the updated status of issues for Milestone 3. Note that these should include the updated issues you worked on for this sprint and not be a duplicate of Milestone 2 Project board.] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
 
+<img src="https://i.imgur.com/riVUXXl.png" width=600>
+
+<img src="https://i.imgur.com/eLxGujI.png" width=600>
+
 # Completed user stories
 
 **Display a list of games on sale**
@@ -194,4 +198,16 @@ this section]
 
 ## App Demo Video
 
+**Video**
+
 [Click here to watch the video](https://youtu.be/vwekclSMF7E)
+
+**Builds**
+
+<img src="https://i.imgur.com/oTErhyX.gif" width=300>
+
+<img src="https://i.imgur.com/cPBqOaB.gif" width=300>
+
+<img src="https://i.imgur.com/X0mWisL.gif" width=300>
+
+
