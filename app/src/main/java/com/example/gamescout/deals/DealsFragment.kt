@@ -12,16 +12,13 @@ import com.example.gamescout.cheapsharkAPI.RetrofitClient
 import com.example.gamescout.database.GameApplication
 import com.example.gamescout.databinding.FragmentDealsBinding
 import com.example.gamescout.item_data.DealItem
-import com.example.gamescout.item_data.GameItem
 import com.example.gamescout.item_data.StoreItem
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import androidx.appcompat.widget.SearchView
+import com.example.gamescout.R
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
-
 
 class DealsFragment : Fragment() {
 
@@ -37,12 +34,6 @@ class DealsFragment : Fragment() {
         _binding = FragmentDealsBinding.inflate(inflater, container, false)
         return binding.root
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setupRecyclerView()
-    }
-
 
     private fun setupRecyclerView() {
         val gameDao = (requireActivity().application as GameApplication).db.gameDao()
@@ -62,8 +53,9 @@ class DealsFragment : Fragment() {
         RetrofitClient.instance.getDeals().enqueue(object : Callback<List<DealItem>> {
             override fun onResponse(call: Call<List<DealItem>>, response: Response<List<DealItem>>) {
                 if (response.isSuccessful) {
-                    response.body()?.let {
-                        adapter.updateData(it)
+                    response.body()?.let { deals ->
+                        val dealItems = deals.map { mapDealItemToGameItem(it) }
+                        adapter.updateData(dealItems)
                     }
                 } else {
                     Timber.e("API Request Failed: ${response.message()}")
@@ -95,10 +87,78 @@ class DealsFragment : Fragment() {
         })
     }
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun searchGames(name: String) {
+        RetrofitClient.instance.searchGames(name).enqueue(object : Callback<List<DealItem>> {
+            override fun onResponse(call: Call<List<DealItem>>, response: Response<List<DealItem>>) {
+                if (response.isSuccessful) {
+                    response.body()?.let {
+                        Timber.i("Received search results: $it")
+                        adapter.clearData()
+                        adapter.updateData(it)
+                        adapter.notifyDataSetChanged()
+                    }
+                } else {
+                    Timber.e("API Request Failed: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<List<DealItem>>, t: Throwable) {
+                Timber.e("API Request Error: ${t.message}")
+            }
+        })
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupRecyclerView()
+
+        val searchView = view.findViewById<SearchView>(R.id.searchView)
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (!query.isNullOrEmpty()) {
+                    searchGames(query)
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                return true
+            }
+        })
+    }
+
+
+    fun mapDealItemToGameItem(deal: DealItem): DealItem {
+        return DealItem(
+            gameID = deal.gameID ?: "",
+            steamAppID = deal.steamAppID ?: "",
+            salePrice = deal.salePrice ?: "",
+            dealID = deal.dealID ?: "",
+            title = deal.title ?: "",
+            internalName = deal.internalName ?: "",
+            thumb = deal.thumb ?: "",
+            metacriticLink = deal.metacriticLink ?: "",
+            storeID = deal.storeID ?: "",
+            cheapest = deal.cheapest ?: "",
+            cheapestDealID = deal.cheapestDealID ?: "",
+            external = deal.external ?: "",
+            normalPrice = deal.normalPrice ?: "",
+            isOnSale = deal.isOnSale ?: "",
+            savings = deal.savings ?: "",
+            metacriticScore = deal.metacriticScore ?: "",
+            steamRatingText = deal.steamRatingText ?: "",
+            steamRatingPercent = deal.steamRatingPercent ?: "",
+            steamRatingCount = deal.steamRatingCount ?: "",
+            releaseDate = deal.releaseDate ?: "",
+            lastChange = deal.lastChange ?: "",
+            dealRating = deal.dealRating ?: ""
+        )
     }
 
 }

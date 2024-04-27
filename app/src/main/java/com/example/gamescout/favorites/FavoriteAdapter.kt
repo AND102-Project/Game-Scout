@@ -38,16 +38,18 @@ class FavoriteAdapter(
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val favoriteTitleTv = itemView.findViewById<TextView>(R.id.favTitleTv)
         private val favoritePriceTv = itemView.findViewById<TextView>(R.id.favPriceTv)
-        private val thumbImageView: ImageView = itemView.findViewById(R.id.favThumbIv)
+        private val thumbIv: ImageView = itemView.findViewById(R.id.favThumbIv)
 
         fun bind(favGame: GameItem) {
             val dealId = favGame.cheapestDealID
             //deal =
 
             Timber.d("Binding game: ${favGame.internalName}")
-            favoriteTitleTv.text = favGame.internalName
+            favoriteTitleTv.text = favGame.external
             favoritePriceTv.text = favGame.cheapest
-            Glide.with(itemView.context).load(favGame.thumb).into(thumbImageView)
+            Glide.with(itemView)
+                .load(favGame.thumb)
+                .into(thumbIv)
         }
     }
 }

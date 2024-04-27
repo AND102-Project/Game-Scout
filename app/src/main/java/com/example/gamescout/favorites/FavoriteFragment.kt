@@ -6,21 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.gamescout.cheapsharkAPI.RetrofitClient
+import com.example.gamescout.R
 import com.example.gamescout.database.GameApplication
 import com.example.gamescout.databinding.FragmentFavoriteBinding
 import com.example.gamescout.item_data.GameItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import timber.log.Timber
 import kotlinx.coroutines.withContext
 
 class FavoriteFragment : Fragment() {
@@ -31,16 +26,19 @@ class FavoriteFragment : Fragment() {
     private val favGames = mutableListOf<GameItem>()
     private lateinit var adapter: FavoriteAdapter
 
+    private lateinit var emptyView: View
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+        emptyView = inflater.inflate(R.layout.item_emptyfav, container, false)
+        emptyView.visibility = View.GONE
+        (_binding?.root as ViewGroup).addView(emptyView)
 
-    private val repository by lazy {
-        (requireActivity().application as GameApplication).repository
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -73,13 +71,19 @@ class FavoriteFragment : Fragment() {
                             entity.external,
                             entity.internalName,
                             entity.thumb
-
                         )
                     }
                         .also { mappedList ->
                             favGames.addAll(mappedList)
-                            launch(Dispatchers.Main) {
-                                adapter.notifyDataSetChanged()
+                            withContext(Dispatchers.Main) {
+                                if (favGames.isEmpty()) {
+                                    binding.favoriteRV.visibility = View.GONE
+                                    emptyView.visibility = View.VISIBLE
+                                } else {
+                                    binding.favoriteRV.visibility = View.VISIBLE
+                                    emptyView.visibility = View.GONE
+                                    adapter.notifyDataSetChanged()
+                                }
                             }
                         }
                 }
