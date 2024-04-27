@@ -39,10 +39,6 @@ class DealAdapter(
         val deal = deals[position]
         val storeName = storeMap[deal.storeID]
 
-
-
-//        storeMap[deal.storeID]?.let { holder.bind(deal, it) }
-
         holder.bind(deal, storeName)
     }
 
@@ -79,8 +75,6 @@ class DealAdapter(
                 Timber.e("No thumbnail URL provided")
             }
 
-//            Timber.i("Bound data: Title - ${deal.title}, Price - ${deal.salePrice}, Store - $storeName, Thumb - ${deal.thumb}")
-
             favoriteButton.setOnClickListener {
                 // Insert game into favorite database
                 val dealItem = GameItem(
@@ -108,35 +102,8 @@ class DealAdapter(
                 onItemClicked(gameItem)
             }
         }
-//        private fun insertGameIntoDatabase(dealItem: GameItem) {
-//            // Convert DealItem to a database entity
-//            val gameEntity = GameEntity(
-//                gameID = dealItem.gameID,
-//                steamAppID = dealItem.steamAppID,
-//                cheapest = dealItem.cheapest,
-//                cheapestDealID = dealItem.cheapestDealID,
-//                external = dealItem.external,
-//                internalName = dealItem.internalName,
-//                thumb = dealItem.thumb
-//            )
-//            lifecycleScope.launch(Dispatchers.IO) {
-//                // Check if the game already exists in the database
-//                val existingGame = gameEntity.gameID?.let { gameDao.getGameById(it) }
-//                if (existingGame != null) {
-//                    withContext(Dispatchers.Main) {
-//                        Toast.makeText(itemView.context, "Game is already in favorites", Toast.LENGTH_SHORT).show()
-//                    }
-//                } else {
-//                    gameDao.insert(gameEntity)
-//                    withContext(Dispatchers.Main) {
-//                        Toast.makeText(itemView.context, "Game added to favorites", Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//            }
-//        }
 
         private fun insertGameIntoDatabase(dealItem: GameItem) {
-            // Convert DealItem to a database entity
             val gameEntity = GameEntity(
                 gameID = dealItem.gameID,
                 steamAppID = dealItem.steamAppID,
@@ -148,11 +115,9 @@ class DealAdapter(
 
             )
 
-            // Log the GameEntity's external field
             Timber.i("Inserting into database: Title - ${dealItem.external}")
 
             lifecycleScope.launch(Dispatchers.IO) {
-                // Check if the game already exists in the database
                 val existingGame = gameEntity.gameID?.let { gameDao.getGameById(it) }
                 if (existingGame != null) {
                     withContext(Dispatchers.Main) {
@@ -167,8 +132,6 @@ class DealAdapter(
             }
         }
     }
-
-    ////////////////////////////
 
     fun clearData() {
         this.deals = emptyList()
