@@ -15,14 +15,10 @@ import com.example.gamescout.item_data.DealItem
 import com.example.gamescout.item_data.StoreItem
 import androidx.appcompat.widget.SearchView
 import com.example.gamescout.R
-import com.example.gamescout.item_data.GameItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
-
-
-
 
 class DealsFragment : Fragment() {
 
@@ -30,8 +26,6 @@ class DealsFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var adapter: DealAdapter
     private var storeMap: Map<String, String> = emptyMap()
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,25 +48,6 @@ class DealsFragment : Fragment() {
         fetchStores()
         fetchDeals()
     }
-
-//    private fun fetchDeals() {
-//        RetrofitClient.instance.getDeals().enqueue(object : Callback<List<DealItem>> {
-//
-//            override fun onResponse(call: Call<List<DealItem>>, response: Response<List<DealItem>>) {
-//                if (response.isSuccessful) {
-//                    response.body()?.let {
-//                        adapter.updateData(it)
-//                    }
-//                } else {
-//                    Timber.e("API Request Failed: ${response.message()}")
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<List<DealItem>>, t: Throwable) {
-//                Timber.e("API Request Error: ${t.message}")
-//            }
-//        })
-//    }
 
     private fun fetchDeals() {
         RetrofitClient.instance.getDeals().enqueue(object : Callback<List<DealItem>> {
@@ -112,14 +87,10 @@ class DealsFragment : Fragment() {
         })
     }
 
-
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
-    ////////////////////////////
 
     private fun searchGames(name: String) {
         RetrofitClient.instance.searchGames(name).enqueue(object : Callback<List<DealItem>> {
@@ -163,7 +134,6 @@ class DealsFragment : Fragment() {
     }
 
 
-
     fun mapDealItemToGameItem(deal: DealItem): DealItem {
         return DealItem(
             gameID = deal.gameID ?: "",
@@ -190,8 +160,5 @@ class DealsFragment : Fragment() {
             dealRating = deal.dealRating ?: ""
         )
     }
-
-
-
 
 }

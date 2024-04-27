@@ -43,6 +43,9 @@
         android:label="FavoriteFragment"
         tools:layout= "@layout/fragment_favorite">
         <action
+            android:id="@+id/action_favoriteFragment_to_dealsFragment"
+            app:destination="@id/dealsFragment" />
+        <action
             android:id="@+id/action_favoriteFragment_to_gameDetailFragment"
             app:destination="@id/gameDetailFragment" />
     </fragment>
