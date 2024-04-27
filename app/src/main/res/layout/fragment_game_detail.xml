@@ -95,6 +95,8 @@
                 app:layout_constraintTop_toBottomOf="@id/button_buy_now" />
 
             <!-- Track Price Button -->
+            <!-- TODO: Logic not in place yet! -->
+            <!--
             <Button
                 android:id="@+id/button_track_price"
                 android:layout_width="0dp"
@@ -105,14 +107,14 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/button_add_to_favorites" />
-
+              -->
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/button_alert_price"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="28dp"
                 android:text="Send an alert"
-                app:layout_constraintTop_toBottomOf="@id/button_track_price"
+                app:layout_constraintTop_toBottomOf="@id/button_add_to_favorites"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"    />
 

@@ -47,7 +47,6 @@ android {
 }
 
 dependencies {
-    implementation("com.google.firebase:firebase-auth:21.0.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

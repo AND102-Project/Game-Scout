@@ -10,13 +10,15 @@ interface CheapSharkApiService {
     @GET("deals")
     fun getDeals(): Call<List<DealItem>>
 
-    @GET("deals?")
+    @GET("deals")
     fun getDealId(
         @Query("id") id: String
     ) : Call<DealItem>
 
     @GET("deals")
-    fun searchGames(@Query("title") name: String): Call<List<DealItem>>
+    fun searchGames(
+        @Query("title") name: String
+    ): Call<List<DealItem>>
 
     @GET("stores")
     fun getStores(): Call<List<StoreItem>>

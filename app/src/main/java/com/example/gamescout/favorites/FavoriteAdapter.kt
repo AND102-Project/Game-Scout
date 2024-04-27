@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.gamescout.R
-import com.example.gamescout.item_data.DealItem
 import com.example.gamescout.item_data.GameItem
 import timber.log.Timber
 
@@ -41,9 +40,6 @@ class FavoriteAdapter(
         private val thumbIv: ImageView = itemView.findViewById(R.id.favThumbIv)
 
         fun bind(favGame: GameItem) {
-            val dealId = favGame.cheapestDealID
-            //deal =
-
             Timber.d("Binding game: ${favGame.internalName}")
             favoriteTitleTv.text = favGame.external
             favoritePriceTv.text = favGame.cheapest

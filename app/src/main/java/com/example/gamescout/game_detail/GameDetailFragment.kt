@@ -33,7 +33,6 @@ class GameDetailFragment : Fragment() {
     private val auth = AuthManager()
     private val email = auth.getCurrentUser()?.email
 
-
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -71,7 +70,6 @@ class GameDetailFragment : Fragment() {
         }
     }
 
-
     private fun displayGameDetails(gameItem: GameItem) {
         Glide.with(this)
             .load(gameItem.thumb)
@@ -108,9 +106,12 @@ class GameDetailFragment : Fragment() {
         binding.buttonAddToFavorites.setOnClickListener {
             addGameToFavorites(gameItem)
         }
+        //TODO: This button is disabled for now
+        /*
         binding.buttonTrackPrice.setOnClickListener {
             trackGamePrice(gameItem)
         }
+        */
         binding.buttonGoBack.setOnClickListener {
             findNavController().popBackStack()
         }
@@ -120,9 +121,9 @@ class GameDetailFragment : Fragment() {
     }
 
 
-
-    private fun trackGamePrice(gameItem: GameItem) {
     //TODO
+    private fun trackGamePrice(gameItem: GameItem) {
+
         // Here I don’t know how can we track Game Price change and change link to a cheaper vendor and send a push notification
     }
     override fun onDestroyView() {
@@ -133,12 +134,12 @@ class GameDetailFragment : Fragment() {
     //in case a button is needed
     private fun setupAlertButton(gameItem: GameItem) {
         binding.buttonAlertPrice.setOnClickListener {
-//            val email = FirebaseAuth.getInstance().currentUser?.email
             val gameID =  gameItem.gameID
-            val price = "100.00"
+            val price = "100"
             setPriceAlert(gameID.toString(), price)
         }
     }
+
     private fun setPriceAlert(gameID: String, price:
     String) {
 
