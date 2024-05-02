@@ -40,6 +40,7 @@ class DealsFragment : Fragment() {
 
         adapter = DealAdapter(emptyList(), storeMap, { gameItem ->
             val action = DealsFragmentDirections.actionDealsFragmentToGameDetailFragment(gameItem)
+
             findNavController().navigate(action)
         }, gameDao, viewLifecycleOwner.lifecycleScope)
         binding.gamesRecyclerView.layoutManager = LinearLayoutManager(context)

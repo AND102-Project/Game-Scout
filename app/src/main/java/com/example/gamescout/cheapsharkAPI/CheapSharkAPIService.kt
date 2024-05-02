@@ -15,4 +15,7 @@ interface CheapSharkApiService {
 
     @GET("deals")
     fun searchGames(@Query("title") name: String): Call<List<DealItem>>
+
+    @GET("deals")
+    fun getTopRated(@Query("steamRating") steamRating: Int, @Query("metacritic") metacritic: Int): Call<List<DealItem>>
 }
