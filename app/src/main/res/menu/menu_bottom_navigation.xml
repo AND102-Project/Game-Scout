@@ -18,7 +18,7 @@
         app:showAsAction="ifRoom"
         />
     <item
-        android:id="@+id/nav_toprated"
+        android:id="@+id/topRatedFragment"
         android:enabled="true"
         android:icon="@drawable/baseline_auto_graph_24"
         android:title="Top Rated"
