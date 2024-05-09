@@ -134,7 +134,6 @@ class DealsFragment : Fragment() {
         })
     }
 
-
     fun mapDealItemToGameItem(deal: DealItem): DealItem {
         return DealItem(
             gameID = deal.gameID ?: "",

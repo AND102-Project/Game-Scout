@@ -148,7 +148,11 @@ this section]
 
 ## GitHub Project board
 
-[Add screenshot of your Project Board with the updated status of issues for Milestone 3. Note that these should include the updated issues you worked on for this sprint and not be a duplicate of Milestone 2 Project board.] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+[Add screenshot of your Project Board with the updated status of issues for Milestone 3. Note that these should include the updated issues you worked on for this sprint and not be a duplicate of Milestone 2 Project board.]
+
+<img src="https://i.imgur.com/riVUXXl.png" width=600>
+
+<img src="https://i.imgur.com/eLxGujI.png" width=600>
 
 # Completed user stories
 
@@ -192,11 +196,24 @@ this section]
 **Upload and Manage Profile Picture (Planned for V2)**
 * Planning on implementing functionality within the user profile settings that allows users to upload, view, and change their profile picture. 
 
-
-
-[Add video/gif of your current application that shows build progress]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
-
 ## App Demo Video
 
-- Embed the YouTube/Vimeo link of your Completed Demo Day prep video
+**Video**
+
+[Click here to watch the video](https://youtu.be/vwekclSMF7E)
+
+**Builds**
+
+**Last build**
+
+<img src="https://i.imgur.com/X0mWisL.gif" width=300>
+
+**Build progress** 
+
+<img src="https://i.imgur.com/oTErhyX.gif" width=300>
+
+<img src="https://i.imgur.com/cPBqOaB.gif" width=300>
+
+
+
+
