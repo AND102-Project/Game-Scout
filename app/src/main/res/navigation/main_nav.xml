@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_startFragment_to_dealsFragment"
             app:destination="@id/dealsFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_topRatedFragment"
+            app:destination="@id/topRatedFragment" />
     </fragment>
 
     <fragment
@@ -49,4 +52,12 @@
             android:id="@+id/action_favoriteFragment_to_gameDetailFragment"
             app:destination="@id/gameDetailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/topRatedFragment"
+        android:name="com.example.gamescout.top_rated.TopRatedFragment"
+        android:label="fragment_top_rated"
+        tools:layout="@layout/fragment_top_rated" />
+    <action
+        android:id="@+id/action_topRatedFragment_to_gameDetailFragment"
+        app:destination="@id/gameDetailFragment" />
 </navigation>

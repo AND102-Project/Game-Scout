@@ -18,17 +18,17 @@
         app:showAsAction="ifRoom"
         />
     <item
+        android:id="@+id/topRatedFragment"
+        android:enabled="true"
+        android:icon="@drawable/baseline_auto_graph_24"
+        android:title="Top Rated"
+        app:showAsAction="ifRoom"
+        />
+    <item
         android:id="@+id/nav_releases"
         android:enabled="true"
         android:icon="@drawable/baseline_new_releases_24"
         android:title="New Releases"
-        app:showAsAction="ifRoom"
-        />
-    <item
-        android:id="@+id/nav_topseller"
-        android:enabled="true"
-        android:icon="@drawable/baseline_auto_graph_24"
-        android:title="Top Sellers"
         app:showAsAction="ifRoom"
         />
 

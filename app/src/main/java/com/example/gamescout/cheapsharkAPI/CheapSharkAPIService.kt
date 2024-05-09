@@ -15,14 +15,15 @@ interface CheapSharkApiService {
         @Query("id") id: String
     ) : Call<DealItem>
 
-    @GET("deals")
-    fun searchGames(
-        @Query("title") name: String
-    ): Call<List<DealItem>>
-
     @GET("stores")
     fun getStores(): Call<List<StoreItem>>
+    
+    @GET("deals")
+    fun searchGames(@Query("title") name: String): Call<List<DealItem>>
 
+    @GET("deals")
+    fun getTopRated(@Query("steamRating") steamRating: Int, @Query("metacritic") metacritic: Int): Call<List<DealItem>>
+    
     @GET("alerts?action=set")
     fun setPriceAlert(
         @Query("email") email: String,
@@ -34,4 +35,5 @@ interface CheapSharkApiService {
     fun manageAlerts(
         @Query("email") email: String
     ): Call<Void>
+
 }
